@@ -1,5 +1,12 @@
 const { Client, GatewayIntentBits, EmbedBuilder, REST, SlashCommandBuilder, Routes, InteractionCollector, ActivityType } = require('discord.js'); // discord.js 라이브러리 호출
-const { token, API_KEY, clientId } = require('./config.json');
+const { config } = require('dotenv');
+
+config();
+
+const token = process.env.DISCORD_TOKEN;
+const API_KEY = process.env.API_KEY;
+const clientId = process.env
+// const { token, API_KEY, clientId } = require('./config.json');
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -35,6 +42,12 @@ const commands = [
     new SlashCommandBuilder()
         .setName('은밀하게')
         .setDescription('....'),
+    new SlashCommandBuilder()
+        .setName('메주대답해')
+        .setDescription('메주가 대답합니다.'),
+    new SlashCommandBuilder()
+        .setName('메주정신차려')
+        .setDescription('메주가 정신을 차립니다.'),
 ].map(command => command.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(token);
@@ -131,6 +144,10 @@ client.on('interactionCreate', async interaction => {
         }
     } else if (commandName === "은밀하게") {
         await interaction.reply('...위대하게');
+    } else if (commandName === "메주정신차려") {
+        await interaction.reply(':bulb:');
+    } else if (commandName === "메주대답해") {
+        await interaction.reply(':zzz:');
     }
 });
 
