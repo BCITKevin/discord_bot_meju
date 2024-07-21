@@ -1,5 +1,8 @@
 const { Client, GatewayIntentBits, EmbedBuilder, REST, SlashCommandBuilder, Routes, InteractionCollector, ActivityType } = require('discord.js'); // discord.js 라이브러리 호출
 const { config } = require('dotenv');
+
+config();
+
 const token = process.env.DISCORD_TOKEN;
 const API_KEY = process.env.API_KEY;
 const clientId = process.env.CLIENT_ID;
